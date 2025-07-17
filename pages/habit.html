@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VHabits - Habits</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="header-logo">
+      <a href="../index.html">
+        <img src="../assets/images/logo.png" alt="logo" class="logo-img">
+        VHabits
+      </a>
+    </div>
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="../pages/analytics.html">Analytics</a>
+      <a href="../pages/habit.html">Habits</a>
+      <a href="../pages/calendar.html">Calendar</a>
+      <button class="theme-toggle" title="Toggle theme">🌙</button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="habits-container">
+      <div class="habits-header">
+        <div>
+          <h1>Your Habits</h1>
+          <div class="habits-stats">
+            <div class="stat-badge" id="totalHabits">0 habits</div>
+            <div class="stat-badge success" id="completedToday">0 completed today</div>
+            <div class="stat-badge warning" id="streakCount">0 day streak</div>
+          </div>
+        </div>
+        <button id="addHabitBtn" class="add-habit-btn">+ Add New Habit</button>
+      </div>
+
+      <div id="habitsList" class="habits-list">
+        <!-- Habits will be loaded here -->
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Add/Edit Habit Modal -->
+<div id="habitModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalTitle">Add New Habit</h2>
+    <form id="habitForm">
+      <div class="form-group">
+        <label for="habitName">Habit Name:</label>
+        <input type="text" id="habitName" required>
+      </div>
+      <div class="form-group">
+        <label for="habitDescription">Description:</label>
+        <textarea id="habitDescription" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="habitColor">Color:</label>
+        <input type="color" id="habitColor" value="#0077cc">
+      </div>
+      <div class="form-group">
+        <label for="habitIcon">Icon (emoji):</label>
+        <input type="text" id="habitIcon" placeholder="🎯" maxlength="2">
+      </div>
+      <div class="form-group">
+        <label for="habitCategory">Category:</label>
+        <select id="habitCategory">
+          <option value="Health">Health</option>
+          <option value="Fitness">Fitness</option>
+          <option value="Productivity">Productivity</option>
+          <option value="Learning">Learning</option>
+          <option value="Mindfulness">Mindfulness</option>
+          <option value="General" selected>General</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="habitGoal">Weekly Goal:</label>
+        <select id="habitGoal">
+          <option value="1">1 day per week</option>
+          <option value="2">2 days per week</option>
+          <option value="3">3 days per week</option>
+          <option value="4">4 days per week</option>
+          <option value="5">5 days per week</option>
+          <option value="6">6 days per week</option>
+          <option value="7" selected>Every day</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="habitPriority">Priority:</label>
+        <select id="habitPriority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="habitDifficulty">Difficulty:</label>
+        <select id="habitDifficulty">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="habitTags">Tags (comma-separated):</label>
+        <input type="text" id="habitTags" placeholder="morning, exercise, health">
+      </div>
+      <div class="form-group">
+        <label for="habitReminder">Reminder Time:</label>
+        <input type="time" id="habitReminder">
+      </div>
+      <div class="form-actions">
+        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="submit" id="saveBtn">Save Habit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/habits.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script>
+
+  let currentHabitId = null;
+  const modal = document.getElementById('habitModal');
+
+  // Load habits on page load
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadHabits();
+    await loadStatistics();
+  });
+
+  async function loadHabits() {
+    const habits = await habitManager.loadHabits();
+    renderHabits(habits);
+  }
+
+  async function loadStatistics() {
+    const stats = await habitManager.getStatistics();
+    document.getElementById('totalHabits').textContent = `${stats.totalHabits} habits`;
+    document.getElementById('completedToday').textContent = `${stats.todayCompletions} completed today`;
+    document.getElementById('streakCount').textContent = `${stats.currentStreak} day streak`;
+  }
+
+  function renderHabits(habits) {
+    const habitsList = document.getElementById('habitsList');
+
+    if (habits.length === 0) {
+      habitsList.innerHTML = '<div class="no-habits">No habits yet. Add your first habit!</div>';
+      return;
+    }
+
+    habitsList.innerHTML = habits.map(habit => `
+      <div class="habit-card" style="border-left: 4px solid ${habit.color}">
+        <div class="habit-header">
+          <div class="habit-info">
+            <h3>${habit.icon || '🎯'} ${habit.name}</h3>
+            <p>${habit.description || 'No description'}</p>
+            <div class="habit-meta">
+              <span class="habit-category">${habit.category || 'General'}</span>
+              <span class="habit-priority priority-${habit.priority || 'medium'}">${habit.priority || 'medium'}</span>
+              <span class="habit-difficulty">${habit.difficulty || 'medium'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="habit-streak">
+          Current streak: ${habit.streak_count || 0} days
+        </div>
+        <div class="habit-goal">
+          Goal: ${habit.weekly_goal || 7} days per week
+        </div>
+        <div class="habit-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${((habit.completedThisWeek || 0) / (habit.weekly_goal || 7)) * 100}%"></div>
+          </div>
+          <div class="progress-text">
+            ${habit.completedThisWeek || 0} / ${habit.weekly_goal || 7} this week
+          </div>
+        </div>
+        ${habit.tags ? `<div class="habit-tags">
+          ${habit.tags.split(',').map(tag => `<span class="tag">${tag.trim()}</span>`).join('')}
+        </div>` : ''}
+        <div class="habit-actions">
+          <button class="track-btn" onclick="trackHabit(${habit.id}, true)">Track</button>
+          <button class="edit-btn" onclick="editHabit(${habit.id})">Edit</button>
+          <button class="delete-btn" onclick="deleteHabit(${habit.id})">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Modal functionality
+  function initializeModal() {
+    const addBtn = document.getElementById('addHabitBtn');
+    const closeBtn = document.querySelector('.close');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const habitForm = document.getElementById('habitForm');
+
+    if (!modal || !addBtn || !closeBtn || !cancelBtn || !habitForm) {
+      console.error('Modal elements not found');
+      return;
+    }
+
+    addBtn.onclick = () => {
+      currentHabitId = null;
+      document.getElementById('modalTitle').textContent = 'Add New Habit';
+      habitForm.reset();
+      modal.style.display = 'block';
+    };
+
+    closeBtn.onclick = () => modal.style.display = 'none';
+    cancelBtn.onclick = () => modal.style.display = 'none';
+
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
+  }
+
+  // Initialize modal after DOM is ready
+  document.addEventListener('DOMContentLoaded', initializeModal);
+
+  // Form submission
+  function initializeForm() {
+    const habitForm = document.getElementById('habitForm');
+    const modal = document.getElementById('habitModal');
+
+    if (!habitForm || !modal) {
+      console.error('Form elements not found');
+      return;
+    }
+
+    habitForm.onsubmit = async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('habitName').value;
+      const description = document.getElementById('habitDescription').value;
+      const color = document.getElementById('habitColor').value;
+      const category = document.getElementById('habitCategory').value;
+      const priority = document.getElementById('habitPriority').value;
+      const icon = document.getElementById('habitIcon').value;
+      const weekly_goal = parseInt(document.getElementById('habitGoal').value);
+      const reminder_time = document.getElementById('habitReminder').value;
+      const tags = document.getElementById('habitTags').value;
+      const difficulty = document.getElementById('habitDifficulty').value;
+
+      let result;
+      if (currentHabitId) {
+        result = await habitManager.updateHabit(currentHabitId, name, description, color, category, priority, icon, weekly_goal, reminder_time, tags, difficulty);
+      } else {
+        result = await habitManager.createHabit(name, description, color, category, priority, icon, weekly_goal, reminder_time, tags, difficulty);
+      }
+
+      if (result.success) {
+        modal.style.display = 'none';
+        loadHabits();
+        notificationManager.success('Habit saved successfully!');
+      } else {
+        notificationManager.error(result.message);
+      }
+    };
+  }
+
+  // Initialize form after DOM is ready
+  document.addEventListener('DOMContentLoaded', initializeForm);
+
+  // Habit actions
+  async function trackHabit(id, completed) {
+    const result = await habitManager.trackHabit(id, completed);
+    if (result.success) {
+      notificationManager.success('Habit tracked!');
+      loadHabits(); // Refresh the list
+    } else {
+      notificationManager.error(result.message);
+    }
+  }
+
+  async function editHabit(id) {
+    const habit = habitManager.habits.find(h => h.id === id);
+    if (!habit) return;
+
+    currentHabitId = id;
+    document.getElementById('modalTitle').textContent = 'Edit Habit';
+    document.getElementById('habitName').value = habit.name;
+    document.getElementById('habitDescription').value = habit.description || '';
+    document.getElementById('habitColor').value = habit.color;
+    document.getElementById('habitCategory').value = habit.category || 'General';
+    document.getElementById('habitPriority').value = habit.priority || 'medium';
+    document.getElementById('habitIcon').value = habit.icon || '🎯';
+    document.getElementById('habitGoal').value = habit.weekly_goal || 7;
+    document.getElementById('habitReminder').value = habit.reminder_time || '';
+    document.getElementById('habitTags').value = habit.tags || '';
+    document.getElementById('habitDifficulty').value = habit.difficulty || 'medium';
+    modal.style.display = 'block';
+  }
+
+  async function deleteHabit(id) {
+    if (confirm('Are you sure you want to delete this habit?')) {
+      const result = await habitManager.deleteHabit(id);
+      if (result.success) {
+        loadHabits();
+        notificationManager.success('Habit deleted successfully!');
+      } else {
+        notificationManager.error(result.message);
+      }
+    }
+  }
+</script>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>VHabits</h3>
+        <p>The simplest habit tracker app on the planet.</p>
+        <div class="footer-social">
+          <a href="https://github.com/dimvalas" title="GitHub">🐱</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Product</h3>
+        <ul>
+          <li><a href="../pages/habit.html">Habits</a></li>
+          <li><a href="../pages/analytics.html">Analytics</a></li>
+          <li><a href="../pages/calendar.html">Calendar</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="../pages/help.html">Help Center</a></li>
+          <li><a href="../pages/privacy.html">Privacy Policy</a></li>
+          <li><a href="../pages/terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 VHabits. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VHabits - About Us</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="header-logo">
+            <a href="../index.html">
+                <img src="../assets/images/logo.png" alt="logo" class="logo-img">
+                VHabits
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html">🏠 Home</a>
+            <a href="analytics.html">📊 Analytics</a>
+            <a href="habit.html">✅ Habits</a>
+            <a href="calendar.html">📅 Calendar</a>
+            <button class="theme-toggle" title="Toggle theme">🌙</button>
+            <div class="user-dropdown">
+                <div class="user-menu-toggle">👤 Account</div>
+                <div class="user-dropdown-menu">
+                    <a href="profile.html" class="user-dropdown-item">👤 Profile</a>
+                    <a href="settings.html" class="user-dropdown-item">⚙️ Settings</a>
+                    <a href="login.html" class="user-dropdown-item">🔐 Login</a>
+                    <a href="register.html" class="user-dropdown-item">📝 Register</a>
+                    <a href="#" class="user-dropdown-item" onclick="logout()">🚪 Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content">
+            <div class="page-header">
+                <h1>About VHabits</h1>
+                <p>Learn more about our mission to make habit tracking simple and effective.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Our Story</h2>
+                <p>VHabits was created with a simple mission: to make habit tracking accessible, intuitive, and effective for everyone. We believe that building good habits shouldn't be complicated or overwhelming.</p>
+                
+                <p>Our team of passionate developers and designers came together to create a platform that focuses on what really matters - helping you build better habits and achieve your goals through consistent, flexible tracking.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Our Mission</h2>
+                <p>We're committed to helping people develop positive habits that stick. Our approach emphasizes flexibility over rigid streaks, understanding that life happens and it's okay to miss a day sometimes.</p>
+                
+                <ul>
+                    <li>Make habit tracking simple and stress-free</li>
+                    <li>Focus on flexible consistency over perfect streaks</li>
+                    <li>Provide insightful analytics without overwhelming users</li>
+                    <li>Keep the interface clean and distraction-free</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2>Why VHabits?</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🎯 Flexible Goals</h3>
+                        <p>Set realistic weekly goals instead of daily streaks. Life happens, and we understand that.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📊 Smart Analytics</h3>
+                        <p>Get insights into your habit patterns without overwhelming charts and statistics.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌙 Beautiful Design</h3>
+                        <p>Enjoy a clean, modern interface with light and dark themes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔒 Privacy First</h3>
+                        <p>Your data stays private and secure. We don't track you or sell your information.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2>Get Started Today</h2>
+                <p>Join thousands of users who have already started building better habits with VHabits. It's completely free and always will be.</p>
+                <div class="cta-buttons">
+                    <a href="register.html" class="cta-btn primary">Create Account</a>
+                    <a href="habit.html" class="cta-btn secondary">View Habits</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>VHabits</h3>
+                    <p>The simplest habit tracker app on the planet. Build better habits, achieve your goals.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="GitHub">🐱</a>
+                        <a href="#" title="Discord">💬</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="habit.html">Habits</a></li>
+                        <li><a href="analytics.html">Analytics</a></li>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="#" onclick="themeManager.toggleTheme()">Toggle Theme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VHabits. All rights reserved. Made with ❤️ for better habits.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/theme.js"></script>
+</body>
+</html>

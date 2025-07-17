@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VHabits - Calendar</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="header-logo">
+            <a href="../index.html">
+                <img src="../assets/images/logo.png" alt="logo" class="logo-img">
+                VHabits
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html">Home</a>
+            <a href="analytics.html">Analytics</a>
+            <a href="habit.html">Habits</a>
+            <a href="calendar.html">Calendar</a>
+            <button class="theme-toggle" title="Toggle theme">🌙</button>
+        </nav>
+    </header>
+    
+    <main class="main">
+        <div class="calendar-container">
+            <h1>Habit Calendar</h1>
+            
+            <div class="calendar-controls">
+                <button class="calendar-nav-btn" onclick="navigateMonth(-1)">‹</button>
+                <h2 id="currentMonth">January 2024</h2>
+                <button class="calendar-nav-btn" onclick="navigateMonth(1)">›</button>
+            </div>
+            
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <div class="legend-color perfect"></div>
+                    <span>Perfect Day (All habits)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color good"></div>
+                    <span>Good Day (Most habits)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color partial"></div>
+                    <span>Partial Day (Some habits)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color missed"></div>
+                    <span>Missed Day</span>
+                </div>
+            </div>
+            
+            <div class="calendar-grid-container">
+                <div class="calendar-weekdays">
+                    <div class="weekday">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar days will be dynamically generated here -->
+                </div>
+            </div>
+            
+            <div class="calendar-stats">
+                <div class="stat-card">
+                    <h3>This Month</h3>
+                    <div class="stat-value" id="monthlyCompletion">0%</div>
+                    <p>Completion Rate</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Current Streak</h3>
+                    <div class="stat-value" id="currentStreak">0</div>
+                    <p>Days</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Perfect Days</h3>
+                    <div class="stat-value" id="perfectDays">0</div>
+                    <p>This Month</p>
+                </div>
+            </div>
+            
+            <div class="calendar-habits">
+                <h3>Today's Habits</h3>
+                <div class="habits-quick-view" id="todayHabits">
+                    <!-- Today's habits will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>VHabits</h3>
+                    <p>The simplest habit tracker app on the planet. Build better habits, achieve your goals.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="GitHub">🐱</a>
+                        <a href="#" title="Discord">💬</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="habit.html">Habits</a></li>
+                        <li><a href="analytics.html">Analytics</a></li>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="#" onclick="themeManager.toggleTheme()">Toggle Theme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VHabits. All rights reserved. Made with ❤️ for better habits.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/calendar.js"></script>
+</body>
+</html>

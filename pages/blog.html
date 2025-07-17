@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VHabits - Blog</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="header-logo">
+            <a href="../index.html">
+                <img src="../assets/images/logo.png" alt="logo" class="logo-img">
+                VHabits
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html">🏠 Home</a>
+            <a href="analytics.html">📊 Analytics</a>
+            <a href="habit.html">✅ Habits</a>
+            <a href="calendar.html">📅 Calendar</a>
+            <button class="theme-toggle" title="Toggle theme">🌙</button>
+            <div class="user-dropdown">
+                <div class="user-menu-toggle">👤 Account</div>
+                <div class="user-dropdown-menu">
+                    <a href="profile.html" class="user-dropdown-item">👤 Profile</a>
+                    <a href="settings.html" class="user-dropdown-item">⚙️ Settings</a>
+                    <a href="login.html" class="user-dropdown-item">🔐 Login</a>
+                    <a href="register.html" class="user-dropdown-item">📝 Register</a>
+                    <a href="#" class="user-dropdown-item" onclick="logout()">🚪 Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content">
+            <div class="page-header">
+                <h1>VHabits Blog</h1>
+                <p>Tips, insights, and updates about building better habits.</p>
+            </div>
+            
+            <div class="content-section">
+                <div class="blog-posts">
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h2><a href="#post-1">🚀 The Science Behind Habit Formation</a></h2>
+                            <div class="post-meta">
+                                <span class="post-date">December 10, 2024</span>
+                                <span class="post-author">By Dr. Sarah Chen</span>
+                                <span class="post-category">Science</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Understanding the neurological basis of habit formation can help you build stronger, more lasting habits. Recent research shows that habits are formed through a process called the "habit loop"...</p>
+                            <a href="#post-1" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h2><a href="#post-2">🎯 Why Weekly Goals Beat Daily Streaks</a></h2>
+                            <div class="post-meta">
+                                <span class="post-date">December 5, 2024</span>
+                                <span class="post-author">By Mike Johnson</span>
+                                <span class="post-category">Strategy</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>The traditional approach to habit tracking focuses on daily streaks, but research suggests that weekly goals might be more effective for long-term success. Here's why VHabits takes a different approach...</p>
+                            <a href="#post-2" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h2><a href="#post-3">💡 5 Habits That Will Transform Your Morning</a></h2>
+                            <div class="post-meta">
+                                <span class="post-date">November 28, 2024</span>
+                                <span class="post-author">By Emily Rodriguez</span>
+                                <span class="post-category">Lifestyle</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>A great day starts with a great morning routine. These five evidence-based habits can help you start your day with energy, focus, and intention...</p>
+                            <a href="#post-3" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h2><a href="#post-4">📊 Understanding Your Habit Analytics</a></h2>
+                            <div class="post-meta">
+                                <span class="post-date">November 20, 2024</span>
+                                <span class="post-author">By Alex Thompson</span>
+                                <span class="post-category">Tutorial</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>VHabits provides powerful analytics to help you understand your habit patterns. Learn how to interpret your data and use insights to optimize your habit-building strategy...</p>
+                            <a href="#post-4" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h2><a href="#post-5">🌙 The Role of Sleep in Habit Formation</a></h2>
+                            <div class="post-meta">
+                                <span class="post-date">November 15, 2024</span>
+                                <span class="post-author">By Dr. James Wilson</span>
+                                <span class="post-category">Health</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Quality sleep is essential for forming new habits and maintaining existing ones. Discover how sleep affects willpower, memory consolidation, and habit automation...</p>
+                            <a href="#post-5" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h2><a href="#post-6">🎨 Designing Your Ideal Habit Environment</a></h2>
+                            <div class="post-meta">
+                                <span class="post-date">November 8, 2024</span>
+                                <span class="post-author">By Lisa Chen</span>
+                                <span class="post-category">Environment</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Your environment plays a crucial role in habit success. Learn how to design your physical and digital spaces to support your habit-building goals...</p>
+                            <a href="#post-6" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <div class="sidebar-section">
+                        <h3>📚 Categories</h3>
+                        <ul class="category-list">
+                            <li><a href="#science">Science (3)</a></li>
+                            <li><a href="#strategy">Strategy (5)</a></li>
+                            <li><a href="#lifestyle">Lifestyle (7)</a></li>
+                            <li><a href="#tutorial">Tutorial (4)</a></li>
+                            <li><a href="#health">Health (6)</a></li>
+                            <li><a href="#environment">Environment (2)</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>🔥 Popular Posts</h3>
+                        <ul class="popular-posts">
+                            <li><a href="#post-2">Why Weekly Goals Beat Daily Streaks</a></li>
+                            <li><a href="#post-3">5 Habits That Will Transform Your Morning</a></li>
+                            <li><a href="#post-1">The Science Behind Habit Formation</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>📧 Newsletter</h3>
+                        <p>Get weekly habit tips and VHabits updates delivered to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit" class="cta-btn primary">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <div class="blog-pagination">
+                    <a href="#" class="pagination-btn disabled">← Previous</a>
+                    <span class="pagination-info">Page 1 of 5</span>
+                    <a href="#" class="pagination-btn">Next →</a>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2>✍️ Write for VHabits</h2>
+                <p>Have insights about habit formation, productivity, or wellness? We'd love to hear from you! Our blog is open to guest contributors who can share valuable content with our community.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-btn primary">Submit Article Idea</a>
+                    <a href="press.html" class="cta-btn secondary">Media Kit</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>VHabits</h3>
+                    <p>The simplest habit tracker app on the planet. Build better habits, achieve your goals.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="GitHub">🐱</a>
+                        <a href="#" title="Discord">💬</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="habit.html">Habits</a></li>
+                        <li><a href="analytics.html">Analytics</a></li>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="#" onclick="themeManager.toggleTheme()">Toggle Theme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VHabits. All rights reserved. Made with ❤️ for better habits.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/theme.js"></script>
+</body>
+</html>

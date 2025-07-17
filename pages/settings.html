@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VHabits - Settings</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="header-logo">
+            <a href="../index.html">
+                <img src="../assets/images/logo.png" alt="logo" class="logo-img">
+                VHabits
+            </a>
+        </div>
+        <nav class="nav">
+            <a href="../index.html">🏠 Home</a>
+            <a href="analytics.html">📊 Analytics</a>
+            <a href="habit.html">✅ Habits</a>
+            <a href="calendar.html">📅 Calendar</a>
+            <button class="theme-toggle" title="Toggle theme">🌙</button>
+            <div class="user-dropdown">
+                <div class="user-menu-toggle">👤 Account</div>
+                <div class="user-dropdown-menu">
+                    <a href="profile.html" class="user-dropdown-item">👤 Profile</a>
+                    <a href="settings.html" class="user-dropdown-item">⚙️ Settings</a>
+                    <a href="login.html" class="user-dropdown-item">🔐 Login</a>
+                    <a href="register.html" class="user-dropdown-item">📝 Register</a>
+                    <a href="#" class="user-dropdown-item" onclick="logout()">🚪 Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content">
+            <div class="page-header">
+                <h1>Settings</h1>
+                <p>Customize your VHabits experience and manage your preferences.</p>
+            </div>
+            
+            <div class="content-section">
+                <div class="settings-tabs">
+                    <button class="tab-btn active" onclick="showTab('general')">🔧 General</button>
+                    <button class="tab-btn" onclick="showTab('notifications')">🔔 Notifications</button>
+                    <button class="tab-btn" onclick="showTab('privacy')">🔒 Privacy</button>
+                    <button class="tab-btn" onclick="showTab('data')">📊 Data</button>
+                </div>
+                
+                <div class="tab-content active" id="general-tab">
+                    <h2>General Settings</h2>
+                    
+                    <div class="settings-section">
+                        <h3>🎨 Appearance</h3>
+                        <div class="setting-item">
+                            <label>Theme</label>
+                            <select id="themeSelect">
+                                <option value="auto">Auto (System)</option>
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label>Language</label>
+                            <select id="languageSelect">
+                                <option value="en" selected>English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="ja">日本語</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="animationsEnabled" checked>
+                                <span class="checkmark"></span>
+                                Enable animations
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="soundEffects" checked>
+                                <span class="checkmark"></span>
+                                Sound effects
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>📅 Calendar Settings</h3>
+                        <div class="setting-item">
+                            <label>Week starts on</label>
+                            <select id="weekStartSelect">
+                                <option value="sunday">Sunday</option>
+                                <option value="monday" selected>Monday</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label>Date format</label>
+                            <select id="dateFormatSelect">
+                                <option value="mm/dd/yyyy">MM/DD/YYYY</option>
+                                <option value="dd/mm/yyyy" selected>DD/MM/YYYY</option>
+                                <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label>Time format</label>
+                            <select id="timeFormatSelect">
+                                <option value="12h" selected>12 hour</option>
+                                <option value="24h">24 hour</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>🎯 Habit Settings</h3>
+                        <div class="setting-item">
+                            <label>Default habit goal</label>
+                            <select id="defaultGoalSelect">
+                                <option value="3">3 times per week</option>
+                                <option value="4">4 times per week</option>
+                                <option value="5" selected>5 times per week</option>
+                                <option value="6">6 times per week</option>
+                                <option value="7">7 times per week</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showMotivationalQuotes" checked>
+                                <span class="checkmark"></span>
+                                Show motivational quotes
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="showProgressPercentage" checked>
+                                <span class="checkmark"></span>
+                                Show progress percentages
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="notifications-tab">
+                    <h2>Notification Settings</h2>
+                    
+                    <div class="settings-section">
+                        <h3>📧 Email Notifications</h3>
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="emailWeeklyProgress" checked>
+                                <span class="checkmark"></span>
+                                Weekly progress summary
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="emailGoalReminders" checked>
+                                <span class="checkmark"></span>
+                                Goal reminders
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="emailTipsAndTricks">
+                                <span class="checkmark"></span>
+                                Tips and tricks
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="emailProductUpdates">
+                                <span class="checkmark"></span>
+                                Product updates
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>🔔 Push Notifications</h3>
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="pushHabitReminders" checked>
+                                <span class="checkmark"></span>
+                                Habit reminders
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label>Reminder time</label>
+                            <input type="time" id="reminderTime" value="09:00">
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="pushWeeklyGoals" checked>
+                                <span class="checkmark"></span>
+                                Weekly goal notifications
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="pushAchievements" checked>
+                                <span class="checkmark"></span>
+                                Achievement notifications
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="privacy-tab">
+                    <h2>Privacy Settings</h2>
+                    
+                    <div class="settings-section">
+                        <h3>🔒 Data Privacy</h3>
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="analyticsTracking">
+                                <span class="checkmark"></span>
+                                Allow anonymous usage analytics
+                            </label>
+                            <p class="setting-description">Help us improve VHabits by sharing anonymous usage data</p>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="crashReporting" checked>
+                                <span class="checkmark"></span>
+                                Automatic crash reporting
+                            </label>
+                            <p class="setting-description">Send crash reports to help us fix bugs</p>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="publicProfile">
+                                <span class="checkmark"></span>
+                                Make profile public
+                            </label>
+                            <p class="setting-description">Allow others to view your habit progress</p>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>🍪 Cookie Settings</h3>
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="essentialCookies" checked disabled>
+                                <span class="checkmark"></span>
+                                Essential cookies
+                            </label>
+                            <p class="setting-description">Required for the app to function properly</p>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="performanceCookies" checked>
+                                <span class="checkmark"></span>
+                                Performance cookies
+                            </label>
+                            <p class="setting-description">Help us analyze how you use the app</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="data-tab">
+                    <h2>Data Management</h2>
+                    
+                    <div class="settings-section">
+                        <h3>📥 Data Export</h3>
+                        <p>Download your data in various formats for backup or analysis.</p>
+                        
+                        <div class="export-options">
+                            <div class="export-item">
+                                <h4>All Data (JSON)</h4>
+                                <p>Complete export including habits, completions, and settings</p>
+                                <button class="cta-btn secondary" onclick="exportData('json')">Export JSON</button>
+                            </div>
+                            
+                            <div class="export-item">
+                                <h4>Habits Data (CSV)</h4>
+                                <p>Habit completion data suitable for spreadsheet analysis</p>
+                                <button class="cta-btn secondary" onclick="exportData('csv')">Export CSV</button>
+                            </div>
+                            
+                            <div class="export-item">
+                                <h4>Analytics Report (PDF)</h4>
+                                <p>Visual summary of your habit progress and statistics</p>
+                                <button class="cta-btn secondary" onclick="exportData('pdf')">Export PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>📤 Data Import</h3>
+                        <p>Import data from other habit tracking apps or backups.</p>
+                        
+                        <div class="import-options">
+                            <div class="import-item">
+                                <label for="importFile">Upload File</label>
+                                <input type="file" id="importFile" accept=".json,.csv">
+                                <button class="cta-btn secondary" onclick="importData()">Import Data</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>🗑️ Data Deletion</h3>
+                        <div class="danger-zone">
+                            <div class="danger-item">
+                                <h4>Clear All Habit Data</h4>
+                                <p>Delete all your habits and completion records. This cannot be undone.</p>
+                                <button class="cta-btn danger" onclick="confirmClearData()">Clear Data</button>
+                            </div>
+                            
+                            <div class="danger-item">
+                                <h4>Delete Account</h4>
+                                <p>Permanently delete your account and all associated data.</p>
+                                <button class="cta-btn danger" onclick="confirmDeleteAccount()">Delete Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-actions">
+                    <button class="cta-btn primary" onclick="saveSettings()">Save Settings</button>
+                    <button class="cta-btn secondary" onclick="resetSettings()">Reset to Defaults</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>VHabits</h3>
+                    <p>The simplest habit tracker app on the planet. Build better habits, achieve your goals.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="GitHub">🐱</a>
+                        <a href="#" title="Discord">💬</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="habit.html">Habits</a></li>
+                        <li><a href="analytics.html">Analytics</a></li>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="#" onclick="themeManager.toggleTheme()">Toggle Theme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VHabits. All rights reserved. Made with ❤️ for better habits.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/theme.js"></script>
+<script>
+// Tab switching functionality
+function showTab(tabName) {
+    // Hide all tab contents
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(tab => tab.classList.remove('active'));
+    
+    // Remove active class from all tab buttons
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected tab and mark button as active
+    document.getElementById(tabName + '-tab').classList.add('active');
+    event.target.classList.add('active');
+}
+
+// Settings management
+function saveSettings() {
+    // Collect all settings
+    const settings = {
+        theme: document.getElementById('themeSelect').value,
+        language: document.getElementById('languageSelect').value,
+        weekStart: document.getElementById('weekStartSelect').value,
+        dateFormat: document.getElementById('dateFormatSelect').value,
+        timeFormat: document.getElementById('timeFormatSelect').value,
+        defaultGoal: document.getElementById('defaultGoalSelect').value,
+        // ... collect other settings
+    };
+    
+    // Save to localStorage or send to server
+    localStorage.setItem('vhabits-settings', JSON.stringify(settings));
+    showNotification('Settings saved successfully!', 'success');
+}
+
+function resetSettings() {
+    if (confirm('Are you sure you want to reset all settings to defaults?')) {
+        localStorage.removeItem('vhabits-settings');
+        location.reload();
+    }
+}
+
+// Data management functions
+function exportData(format) {
+    showNotification(`Exporting data in ${format.toUpperCase()} format...`, 'info');
+    // Implementation for data export
+}
+
+function importData() {
+    const fileInput = document.getElementById('importFile');
+    if (fileInput.files.length === 0) {
+        showNotification('Please select a file to import.', 'error');
+        return;
+    }
+    
+    showNotification('Importing data...', 'info');
+    // Implementation for data import
+}
+
+function confirmClearData() {
+    if (confirm('Are you sure you want to clear all your habit data? This cannot be undone.')) {
+        showNotification('All habit data has been cleared.', 'warning');
+        // Implementation for data clearing
+    }
+}
+
+function confirmDeleteAccount() {
+    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        if (confirm('This will permanently delete all your data. Are you absolutely sure?')) {
+            // Implementation for account deletion
+            alert('Account deletion would be implemented here');
+        }
+    }
+}
+
+// Theme change handler
+document.getElementById('themeSelect').addEventListener('change', function() {
+    const theme = this.value;
+    if (theme === 'auto') {
+        themeManager.setTheme('auto');
+    } else {
+        themeManager.setTheme(theme);
+    }
+});
+
+// Load saved settings on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedSettings = localStorage.getItem('vhabits-settings');
+    if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        // Apply saved settings to form elements
+        Object.keys(settings).forEach(key => {
+            const element = document.getElementById(key + 'Select') || document.getElementById(key);
+            if (element) {
+                element.value = settings[key];
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
